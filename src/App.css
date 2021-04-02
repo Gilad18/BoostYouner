@@ -56,10 +56,13 @@ ul{
   align-items: center;
 }
 .dashboard .logo {
-  width: 5rem;
-  height: 5rem;
+  width: 7rem;
+  height: 7rem;
   border-radius: 50%;
-  background-color: green;
+  background-image: url('./media/logo.png');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 .dashboard .userDetials {
   width: 100%;

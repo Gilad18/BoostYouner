@@ -4,9 +4,9 @@ import {Link} from 'react-router-dom'
 export default function Dashboard() {
     return (
         <div className="dashboard">
-           <div className="logo">
-           <Link to="/account">LOGO</Link> 
-           </div>
+           
+           <Link to="/account"><div className="logo"> </div></Link> 
+          
            <div className="userDetials">
                <h3>Wlecome , XXX</h3>
                <h3>Balance : XXX</h3>
