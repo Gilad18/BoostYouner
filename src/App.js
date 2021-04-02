@@ -1,11 +1,10 @@
-import UI from './components/UI'
+import Router from './components/Router'
 import './App.css';
 
 function App() {
   return (
    <div>
-     Welcome To BoostYouner
-     <UI/>
+     <Router/>
     </div>
   );
 }
