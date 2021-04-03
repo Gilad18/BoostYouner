@@ -15,7 +15,9 @@ export default function Preview({name , pic , image , text, tag , format , close
                 <div className="feedpic" style={{backgroundImage:`url(${image})`}}></div>
                 <div className="feeddata"></div>
                 <div className="feedComments">
-                    <p style={{fontWeight:'bold'}}>{name.toLowerCase()}</p><p>{text}</p><p style={{color:'blue'}}> #{tag}</p>
+                    <p style={{fontWeight:'bold'}}>{name.toLowerCase()}</p>
+                   <p>{text}</p> <br></br><p style={{color:'blue'}}> #{tag}</p>
+                    <p style={{color:'purple'}}> @{localStorage.getItem('igAccount')}</p>
                 </div>
                 <div className="feedFooter"></div>
             </div>}
@@ -28,6 +30,7 @@ export default function Preview({name , pic , image , text, tag , format , close
                     <div className="storyMain">
                         <h3 style={{backgroundColor:'white' }}>{text}</h3>
                         <p style={{color:'blue'}}> #{tag}</p>
+                        <p style={{color:'purple'}}> @{localStorage.getItem('igAccount')}</p>
                         </div>
                     <div className="storyFooter">
                         <div className="messageStory">Message {name.toLowerCase()}...</div>
