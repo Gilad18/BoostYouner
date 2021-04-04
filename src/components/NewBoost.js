@@ -70,10 +70,10 @@ export default function NewBoost() {
             
             {emptyForm && 
              <form className="targeting">
-                 <h1>Create New Boost:</h1>
+                 <h1>Create a New Boost:</h1>
                 <div className="flexDiv">
-            <Input type="checkbox" name="Story" value="story" onChange={(e) => setFortmat(e.target.value)} />
-            <Input type="checkbox" name="Feed" value="feed" onChange={(e) => setFortmat(e.target.value)} />
+            <Input type="radio" group="format" name="Story" value="story" onChange={(e) => setFortmat(e.target.value)} />
+            <Input type="radio"group="format" name="Feed" value="feed" onChange={(e) => setFortmat(e.target.value)} />
             </div>
             <div className="flexDiv">
             <label >Loation:</label>
@@ -124,7 +124,8 @@ export default function NewBoost() {
             }
             {
              confirmDis && <Confirm format={format} date={newDate} id={chosen.id} 
-             amount={chosen.followers} closePop={closePop} />
+             amount={chosen.followers} closePop={closePop} boostID={Math.floor(Math.random()*4000 +1)}
+             image={newImage} text={newText} />
             }
             
         </div>

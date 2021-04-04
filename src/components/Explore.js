@@ -11,7 +11,7 @@ export default function Explore() {
         setBlogs(response.data.articles)
         }
         search();
-    })
+    },[])
     return (
         <div className="main">
             <h2>Need some guidence for influencer marketing?</h2>

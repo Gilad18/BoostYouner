@@ -5,6 +5,7 @@ import NewBoost from './NewBoost'
 import Landing from './Landing'
 import Explore from './Explore'
 import React from 'react'
+import HowTo from './HowTo'
 
 export default function Router() {
     return (
@@ -15,6 +16,7 @@ export default function Router() {
                  <Route path="/account"  component={Header}/>
                  <Route path="/account/welcome" exact component={Account}/>
                  <Route path="/account/newboost" exact component={NewBoost}/>
+                 <Route path="/account/howto" exact component={HowTo}/>
                  <Route path="/account/explore" exact component={Explore}/>
                 </div>
                 </BrowserRouter>

@@ -1,0 +1,59 @@
+.firstPage {
+    width: 90%;
+    height: 80%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 3fr;
+    grid-gap : 4rem
+}
+
+.firstPage .cell {
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 0.5rem;
+}
+
+.cell h1 , .cell h2 {
+    text-align: center;
+}
+.history {
+    grid-column: 1 / span 3;
+}
+
+.history table {
+    height: 80%;
+    background-color: rgb(248, 246, 244);
+    min-width: 95%;
+    border-collapse: collapse;
+    font-size: 0.9em;
+    margin: 25px 0;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: scroll;
+}
+.mainTR{
+    background-color: #2a9d8f;
+}
+
+.history table tr {
+    width: 100%;
+    text-align: center;
+    border-bottom: 3px grey solid;
+    padding: 1px;
+}
+
+.trImg {
+    width: 50%;
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.trImg:hover {
+    width: 15rem;
+    height: 15rem;
+    position: absolute;
+}

@@ -39,6 +39,10 @@ ul{
   cursor: pointer;
 }
 
+button:focus {
+  outline: none;
+}
+
 .display {
   width: 98vw;
   height: 100vh;
@@ -58,8 +62,8 @@ ul{
   align-items: center;
 }
 .dashboard .logo {
-  width: 7rem;
-  height: 7rem;
+  width: 8rem;
+  height: 8rem;
   border-radius: 50%;
   background-image: url('./media/logo.png');
   background-position: center;
@@ -68,20 +72,51 @@ ul{
 }
 .dashboard .userDetials {
   width: 100%;
-  height: 10%;
+  height: 15%;
   text-align: center;
+  border-top: grey 1px solid;
 }
 
 .dashboard .navigation {
   width: 100%;
-  height: 40%;
-  background-color: grey;
+  height: 50%;
+  border-top: grey 1px solid;
+  font-size: 18px;
+  line-height: 3rem;
 }
 .dashboard .deposit {
   width: 100%;
   height: 10%;
-  background-color: grey;
+  text-align: center;
 }
+
+.deposit button {
+  width: 50%;
+  height: 2rem;
+  margin: 0;
+  border-color: white;
+  color: white;
+}
+
+.deposit button:hover {
+  background-color: white;
+  color: var(--prime);
+}
+
+.despositPop {
+  width: 40rem;
+  height: 30rem;
+  position: absolute;
+  background-color: var(--prime);
+  top: 20%;
+  left: 30%;
+  z-index: 10;
+  text-align: center;
+}
+
+
+
+
 
 .main {
   width: 80%;
@@ -203,6 +238,8 @@ padding: 3px;
   background-position: center;
  background-repeat: no-repeat;
  background-size: contain;
+ margin-top: 7px;
+ margin-right: 5px;
 }
 
 .feedpic{
