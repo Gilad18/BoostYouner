@@ -2,21 +2,28 @@ import React,{useState} from 'react'
 import { Link  } from 'react-router-dom'
 import Button from './Button'
 import Input from './Input'
+import Loader from '../components/Loader/Loader'
 
 export default function Dashboard() {
 
     const [openDesposit , setOpenDeposit] = useState(false)
     const [amount , setAmount] = useState('')
+    const [loading , setLoading] = useState(false)
 
     const handleDeposit = () => {
         setOpenDeposit(true)
     }
 
     const handlepayNow = () => {
+        setLoading(true)
         let currectBalnce = parseInt(localStorage.getItem('balance')) 
         currectBalnce+=amount
         localStorage.setItem('balance' , currectBalnce)
-        setTimeout(setOpenDeposit(false) , 1000)
+        setTimeout(doneDeposit , 2500)
+    }
+    const doneDeposit = () => {
+        setOpenDeposit(false)
+        setLoading(false)
     }
     return (
         <div className="dashboard">
@@ -48,7 +55,9 @@ export default function Dashboard() {
                <Input name="Google Pay" type="radio" group="method"/>
                <Input name="Visa" type="radio" group="method"/>
                <Button name="Pay Now" onClick={handlepayNow}/>
-               </div>}
+               {loading && <Loader text="Getting Authorization..." response={true}/>}
+               </div>
+               }
         </div>
     )
 }

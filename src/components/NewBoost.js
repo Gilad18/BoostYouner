@@ -4,6 +4,7 @@ import API from './api'
 import Card from './BoosterCard'
 import Confirm from './Confirm'
 import Preview from './Preview'
+import Loader from '../components/Loader/Loader'
 
 export default function NewBoost() {
     const [format, setFortmat] = useState('')
@@ -30,6 +31,7 @@ export default function NewBoost() {
     }
 
     const checkformatch = async () => {
+        setLoading(true)
         const response = await API.get('/');
         let reuier = response.data.filter(item => {
             return item.location === location
@@ -38,7 +40,8 @@ export default function NewBoost() {
         }).sort((a, b) => b.rate - a.rate)
 
         setMatch(reuier);
-        setEmtpy(false)
+        setEmtpy(false);
+        setLoading(false)
     }
 
     const getPArtnerByID = (theID) => {
@@ -110,6 +113,7 @@ export default function NewBoost() {
            </div>
             <input type="button" value="Get Boosters" onClick={checkformatch}/>
             </form>}
+            {loading && <Loader text="Getting Some Awesome Data, Please Wait..." response={false}/>}
             {!emptyForm && <div className="results" > 
             {match.map((item , index) => {
                 return <Card key={index} pic={item.avatar} name={item.name} id={item.id}

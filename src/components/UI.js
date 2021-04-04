@@ -5,6 +5,7 @@ import '../CSS/account.css'
 
 export default function UI() {
 
+
    const [ campaigns , setCampaigns] = useState([])
 
    useEffect(()=> {
@@ -13,7 +14,26 @@ export default function UI() {
      }
       update();
    },[])
-
+    
+   const partDay = () => {
+    let currentDate = new Date().getHours()
+    let text;
+    console.log(currentDate)
+    switch(true) {
+      case currentDate>6 && currentDate<12:
+        text ="Morning"
+        break;
+        case currentDate>12 && currentDate<18 :
+          text ="Afternoon"
+          break;  
+          case currentDate>18 && currentDate<23:
+            text ="Evening"
+            break;  
+            default :
+            text="Night"
+    }
+    return text
+   }
    const getNum = () => {
      if(localStorage.getItem('campaigns') !== null) {
        return campaigns.length
@@ -42,7 +62,7 @@ export default function UI() {
   return (
 
     <div className="main">
-      <h1>Welcome , {localStorage.getItem('name')}</h1>
+      <h1>Good {partDay()} , {localStorage.getItem('name')}</h1>
       <div className="firstPage">
         <div className="cell stat1">
           <h4>Live Campigns:</h4>
@@ -56,8 +76,9 @@ export default function UI() {
           <h4>Avg. Spend:</h4>
           <h2>{getAVGspent()}</h2>
         </div>
-        <div className="cell history">
-          <h4>My History Campaigns:</h4>
+        <fieldset className="cell history">
+          
+          <legend style={{fontWeight:'bold'}}>My History Campaigns</legend>
           <table>
             <tr className="mainTR">
               <th>Campaign ID</th>
@@ -75,7 +96,7 @@ export default function UI() {
             })}
            
           </table>
-        </div>
+        </fieldset>
       </div>
     </div>
   )

@@ -43,6 +43,10 @@ button:focus {
   outline: none;
 }
 
+input:focus {
+  outline: none;
+}
+
 .display {
   width: 98vw;
   height: 100vh;
@@ -60,6 +64,7 @@ button:focus {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
 }
 .dashboard .logo {
   width: 8rem;
@@ -109,8 +114,7 @@ button:focus {
   position: absolute;
   background-color: var(--prime);
   top: 20%;
-  left: 30%;
-  z-index: 10;
+  left: 140%;
   text-align: center;
 }
 
@@ -122,6 +126,8 @@ button:focus {
   width: 80%;
   height: 100%;
   padding: 1rem;
+  position: absolute;
+  left: 20%;
 }
 
 
@@ -207,7 +213,7 @@ button:focus {
   height: 30rem;
   position: absolute;
   top: 20%;
-  left: 30%;
+  left: 10%;
   background-color: white;
   border: var(--prime) 3px solid;
   text-align: center;
