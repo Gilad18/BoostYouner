@@ -51,9 +51,11 @@ export default function Dashboard() {
                Add Funds Here:
                <Input name="Invoice For:" type="text" value={localStorage.getItem('company')}/>
                <Input name="Amount:" type="number" onChange={(e) => setAmount(parseInt(e.target.value))}/>
+              <div className="payMethod">
                <Input name="PayPal" type="radio" group="method"/>
                <Input name="Google Pay" type="radio" group="method"/>
                <Input name="Visa" type="radio" group="method"/>
+               </div>
                <Button name="Pay Now" onClick={handlepayNow}/>
                {loading && <Loader text="Getting Authorization..." response={true}/>}
                </div>

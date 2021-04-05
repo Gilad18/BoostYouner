@@ -109,13 +109,29 @@ input:focus {
 }
 
 .despositPop {
-  width: 40rem;
-  height: 30rem;
+  width: 100%;
+  height: 45%;
   position: absolute;
   background-color: var(--prime);
-  top: 20%;
-  left: 140%;
+  top: 50%;
+  left: 0%;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.payMethod {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.despositPop button {
+  width: 50%;
+}
+
+.despositPop input {
+  width: 90%;
 }
 
 
@@ -126,7 +142,7 @@ input:focus {
   width: 80%;
   height: 100%;
   padding: 1rem;
-  position: absolute;
+  position: relative;
   left: 20%;
 }
 
