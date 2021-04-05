@@ -11,23 +11,28 @@ export default function Dashboard() {
     const [loading , setLoading] = useState(false)
 
     const handleDeposit = () => {
+        console.log(amount)
         setOpenDeposit(true)
     }
 
     const handlepayNow = () => {
-        setLoading(true)
-        let currectBalnce = parseInt(localStorage.getItem('balance')) 
-        currectBalnce+=amount
-        localStorage.setItem('balance' , currectBalnce)
-        setTimeout(doneDeposit , 2500)
+        
+        if(amount>=50) {
+            setLoading(true)
+            let currectBalnce = parseInt(localStorage.getItem('balance')) 
+            currectBalnce+=amount
+            localStorage.setItem('balance' , currectBalnce)
+            setTimeout(doneDeposit , 2500)
+        }
+      else {console.log('error min deposit')}
     }
     const doneDeposit = () => {
         setOpenDeposit(false)
         setLoading(false)
     }
     return (
+        
         <div className="dashboard">
-
             <Link to="/account/welcome"><div className="logo"> </div></Link>
 
             <div className="userDetials">

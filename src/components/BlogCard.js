@@ -7,7 +7,7 @@ export default function BlogCard({img , title, author , url}) {
         <div className="blogInfo">
             <h4>{title}</h4>
             <h6>by {author}</h6>
-            <p><a href={url} target="_blank">Read More</a></p>
+            <p><a href={url} target="_blank" rel="noreferrer">Read More</a></p>
         </div> 
     </div>
     )

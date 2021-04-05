@@ -14,12 +14,12 @@ export default function Loader({text , response}) {
     },[])
     return (
         <div className="loader">
-        <div class="lds-grid">
+        <div className="lds-grid">
             <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
         </div>
         <h4>{text}</h4>
         {isDone && <div className="doneDespoitCheck">
-        <i class="fas fa-check-circle fa-4x"></i>
+        <i className="fas fa-check-circle fa-4x"></i>
         <h4>Succeed!</h4>
             </div>}
         
