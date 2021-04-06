@@ -1,30 +1,29 @@
-import React, { useState ,useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import '../Loader/loader.css'
 
-export default function Loader({text , response}) {
+export default function Loader({ text, response }) {
 
-    const [isDone , setIsDone] = useState(false)
+    const [isDone, setIsDone] = useState(false)
 
-    useEffect (() => {
+    useEffect(() => {
         if (response) {
             const approvedTrans = () => {
                 setIsDone(true)
             }
-            setTimeout(approvedTrans , 1500)
-        }    
-    },[response])
+            setTimeout(approvedTrans, 1500)
+        }
+    }, [response])
 
     return (
         <div className="loader">
-        <div className="lds-grid">
-            <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
-        </div>
-        <h4>{text}</h4>
-        {isDone && <div className="doneDespoitCheck">
-        <i className="fas fa-check-circle fa-4x"></i>
-        <h4>Succeed!</h4>
+            <div className="lds-grid">
+                <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+            </div>
+            <h4>{text}</h4>
+            {isDone && <div className="doneDespoitCheck">
+                <i className="fas fa-check-circle fa-4x"></i>
+                <h4>Succeed!</h4>
             </div>}
-        
         </div>
     )
 }

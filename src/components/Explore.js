@@ -15,7 +15,7 @@ export default function Explore() {
     return (
         <div className="main">
             <h2>Need some guidence for influencer marketing?</h2>
-            <h3>we got for you the latest blogs with some really inspring insight</h3>
+            <h3>We got for you the latest blogs with inspring insights and trends</h3>
             <div className="blogsGrid">
                   {blogs.map((item,index)=> {
                       return <BlogCard key={index} img={item.urlToImage} title={item.title}

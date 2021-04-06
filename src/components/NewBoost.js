@@ -44,7 +44,6 @@ export default function NewBoost() {
         }).sort((a, b) => b.rate - a.rate);
 
         showAPIResult(requested)
-
     }
 
     const showAPIResult = (results) => {
@@ -52,7 +51,7 @@ export default function NewBoost() {
             setMatch(results);
             setEmtpy(false);
         }
-        else { setError(true) }    //set error messeage
+        else { setError(true) }    
         setLoading(false)
     }
 
@@ -121,7 +120,8 @@ export default function NewBoost() {
                     amount={chosen.followers} closePop={closePop} boostID={Math.floor(Math.random() * 4000 + 1)}
                     image={newImage} text={newText} />
             }
-             {error && <h3 style={{color:'red',textAlign:'center'}}>Oh no! We couldn’t find a suitable match for these targets, please try again...</h3>}
+             {error && <h3 style={{color:'red',textAlign:'center'}}>
+                 Oh no! We couldn’t find a suitable match for these targets, please try again...</h3>}
         </div>
     )
 }

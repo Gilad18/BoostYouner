@@ -10,7 +10,6 @@
 }
 
 .firstPage .cell {
-    /* background-color: white; */
     background-color: rgb(248, 246, 244);
     border: 2px solid black;
     border-radius: 20px;
@@ -20,20 +19,68 @@
 .cell h1 , .cell h2 {
     text-align: center;
 }
+
+.cell i {
+    color:rgb(92, 91, 91);
+}
+
+.cell:nth-child(2) i::after {
+    content: 'Total impressions of your ads';
+    float: left;
+    margin-right: 5px;
+    display: none;
+}
+
+.cell:nth-child(2) i:hover::after {
+    display: block;
+}
+
+.cell:nth-child(3) i::after {
+    content: 'Avarage cost of each Impression';
+    float: left;
+    margin-right: 5px;
+    display: none;
+}
+
+.cell:nth-child(3) i:hover::after {
+    display: block;
+}
+
 .history {
     grid-column: 1 / span 3;
+    max-height: 100%;
+    overflow: scroll ;
+    overflow-x: hidden;
 }
 
 .history table {
-    height: 90%;
     background-color: rgb(248, 246, 244);
     min-width: 100%;
     border-collapse: collapse;
     font-size: 0.9em;
-    margin: 25px 0;
     margin-left: auto;
     margin-right: auto;
-    overflow: scroll;
+    overflow : scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+
+  }
+  
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgb(4, 7, 54); 
+    border-radius: 10px;
+  }
+
+.history table tr {
+   height:  4rem;
 }
 .mainTR{
     background-color: #2a9d8f;
@@ -47,8 +94,9 @@
 }
 
 .trImg {
-    width: 50%;
-    height: 100%;
+    margin: auto;
+    width: 3rem;
+    height: 3rem;
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;

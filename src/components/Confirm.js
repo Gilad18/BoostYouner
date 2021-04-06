@@ -1,11 +1,13 @@
 import React, {useState} from 'react'
 import Button from './Button'
 import { useHistory } from 'react-router-dom'
+import Loader from './Loader/Loader'
 
 export default function Confirm({ format, date, id, amount, closePop, boostID, image }) {
 
     const myBoostid = boostID;
     const [error , setError] = useState(false)
+    const [loading , setLoading] = useState(false)
 
     let pay = Number.parseFloat((amount * 0.02)).toFixed(2)
     let fee = Number.parseFloat((pay * 0.1).toFixed(2))
@@ -19,12 +21,12 @@ export default function Confirm({ format, date, id, amount, closePop, boostID, i
         setError(false)
         let currectBalnce = parseInt(localStorage.getItem('balance'))
         if (currectBalnce >= total) {
+            setLoading(true)
             currectBalnce -= total
             localStorage.setItem('balance', currectBalnce)
-            console.log(`approved! currentBlance: ${currectBalnce}`)
             createTrasactionObj();
-            setTimeout(() => history.push("/account/welcome"), 1500)
-        } else { setError(true)}  //set error
+            setTimeout(() => history.push("/account/welcome"), 2500)
+        } else { setError(true)}  
 
     }
     const createTrasactionObj = () => {
@@ -59,7 +61,7 @@ export default function Confirm({ format, date, id, amount, closePop, boostID, i
            Please check the following details:
             <p>Boost ID : {myBoostid}</p>
             <div className="flexDiv" style={{ width: '90%' }}>
-                <h3>Name: {localStorage.getItem('company')}</h3>
+                <h3>Issue For: {localStorage.getItem('company')}</h3>
                 <h3>Date: {date}</h3>
             </div>
             <div style={{ textAlign: 'left', borderBottom: '1px black solid' }}>
@@ -70,7 +72,9 @@ export default function Confirm({ format, date, id, amount, closePop, boostID, i
             </div>
             <h3>Total : {total} ILS</h3>
             <Button name="Approve" onClick={handleApprove} />
-            {error && <p style={{color:'red' }}>No sufficient funds , please make a despoit</p>}
+            {error && <p style={{color:'red' }}>No sufficient funds , please make a despoit</p>} 
+            {loading && <Loader text="Complete Request..." response={true}/>}
+
         </div>
     )
 }

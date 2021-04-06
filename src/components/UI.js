@@ -8,7 +8,6 @@ export default function UI() {
   const date = new Date()
   const [campaigns, setCampaigns] = useState([])
 
-
   useEffect(() => {
     const update = () => {
       setCampaigns(JSON.parse(localStorage.getItem('campaigns')));
@@ -53,7 +52,6 @@ export default function UI() {
       let followersTotal = campaigns.reduce((a, b) => {
         return a + b.followers;
       }, 0)
-
       return Math.floor(followersTotal * 0.45)
     }
     else { return 0 }
@@ -68,10 +66,10 @@ export default function UI() {
     else { return Number.parseFloat(0).toFixed(2) }
   }
 
-  const handleSort = () => {
-    let theCampigns = campaigns
-    theCampigns.sort( function (a,b) { return b.spent - a.spent} )
-  }
+  // const handleSort = () => {
+  //   let theCampigns = campaigns
+  //   theCampigns.sort( function (a,b) { return b.spent - a.spent} )
+  // }
 
   return (
 
@@ -79,15 +77,17 @@ export default function UI() {
       <h1>Good {partDay()} , {localStorage.getItem('name')}</h1>
       <div className="firstPage">
         <div className="cell stat1">
-          <h4>Live Campigns:</h4>
+          <h3>Live Campaigns:</h3>
           <h1><span>{getNum()}</span></h1>
         </div>
         <div className="cell stat2">
-          <h4>Estimated Reach:</h4>
+        <i style={{float:'right'}} className="fas fa-info-circle"></i>
+          <h3>Estimated Reach:</h3>
           <h2>{getReached().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h2>
         </div>
         <div className="cell stat3">
-          <h4>CPI</h4>
+        <i style={{float:'right'}} className="fas fa-info-circle"></i>
+          <h3>CPI</h3>
           <h2>{getAVGspent()}</h2>
         </div>
         <fieldset className="cell history">
@@ -99,8 +99,8 @@ export default function UI() {
                 <th>Date</th>
                 <th>PartnerID</th>
                 <th>Format</th>
-                <th>Preview</th>
-                <th style={{display:'flex' , justifyContent:'space-evenly'}}>Spent <i onClick={handleSort}> F </i></th>
+                <th>Image</th>
+                <th>Spent </th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -112,7 +112,7 @@ export default function UI() {
               })}
             </tbody>
           </table>
-          {!campaigns &&  <h3 style={{textAlign:'center'}}>You D'ont Have any Live Campigns Yet, what are you waiting for?</h3>}
+          {!campaigns &&  <h3 style={{textAlign:'center'}}>You d'ont have any live campigns yet, go ahead and create one!</h3>}
         </fieldset>
       </div>
     </div>

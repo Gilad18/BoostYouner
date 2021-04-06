@@ -65,7 +65,7 @@ export default function Dashboard() {
            </div>
            {openDesposit &&
             <div className="despositPop">
-                <Button name="-" onClick={()=> setOpenDeposit(false)}/>
+                <Button name={<i class="fas fa-times fa-2x"></i>} onClick={()=> setOpenDeposit(false)}/>
                Add Funds Here:
                <Input name="Invoice For:" type="text" value={localStorage.getItem('company')} onChange={handleChange}/>
                <Input name="Amount:" type="number" onChange={handleAmount}/>
@@ -74,7 +74,7 @@ export default function Dashboard() {
                <Input name="Google Pay" type="radio" group="method"/>
                <Input name="Visa" type="radio" group="method"/>
                </div>
-               {error && <p style={{lineHeight:'5px' , color:'red'}}>Minimum 50ILS</p>}
+               {error && <p style={{lineHeight:'5px' , color:'red' , fontWeight:'bold'}}>Minimum 50 ILS</p>}
                <Button name="Pay Now" onClick={handlepayNow}/>
                {loading && <Loader text="Getting Authorization..." response={true}  />}
                </div>

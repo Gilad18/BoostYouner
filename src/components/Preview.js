@@ -34,9 +34,7 @@ export default function Preview({name , pic , image , text, tag , format , close
                         </div>
                     <div className="storyFooter">
                         <div className="messageStory">Message {name.toLowerCase()}...</div>
-                        <p>M</p>
                     </div>
-
                 </div>
             }
         </div>
