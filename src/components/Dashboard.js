@@ -16,6 +16,10 @@ export default function Dashboard() {
         setError(false)
     }
 
+    const handleChange = () => {
+        console.log('change')
+    }
+
     const handlepayNow = () => {
         
         if(amount>=50) {
@@ -63,7 +67,7 @@ export default function Dashboard() {
             <div className="despositPop">
                 <Button name="-" onClick={()=> setOpenDeposit(false)}/>
                Add Funds Here:
-               <Input name="Invoice For:" type="text" value={localStorage.getItem('company')}/>
+               <Input name="Invoice For:" type="text" value={localStorage.getItem('company')} onChange={handleChange}/>
                <Input name="Amount:" type="number" onChange={handleAmount}/>
               <div className="payMethod">
                <Input name="PayPal" type="radio" group="method"/>
@@ -72,7 +76,7 @@ export default function Dashboard() {
                </div>
                {error && <p style={{lineHeight:'5px' , color:'red'}}>Minimum 50ILS</p>}
                <Button name="Pay Now" onClick={handlepayNow}/>
-               {loading && <Loader text="Getting Authorization..." response={true}/>}
+               {loading && <Loader text="Getting Authorization..." response={true}  />}
                </div>
                }
         </div>

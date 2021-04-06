@@ -66,6 +66,7 @@ export default function NewBoost() {
     const handlePreview = (e) => {
         getPArtnerByID(e.target.id)
         setPreview(true)
+        console.log(newHour)
     }
 
     const handleConfirm = (e) => {
@@ -102,7 +103,7 @@ export default function NewBoost() {
                     </div>
                     <input className="matchButton" type="button" value="Get Boosters" onClick={checkformatch} />
                 </form>}
-            {loading && <Loader text="Getting Some Awesome Data, Please Wait..." response={false} />}
+            {loading && <Loader text="Getting Some Awesome Data, Please Wait..." response={false}  />}
             {!emptyForm && <div className="results" >
                 {match.map((item, index) => {
                     return <Card key={index} pic={item.avatar} name={item.name} id={item.id}

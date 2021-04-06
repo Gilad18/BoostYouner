@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState ,useEffect} from 'react'
 import '../Loader/loader.css'
 
 export default function Loader({text , response}) {
+
     const [isDone , setIsDone] = useState(false)
 
     useEffect (() => {
@@ -11,7 +12,8 @@ export default function Loader({text , response}) {
             }
             setTimeout(approvedTrans , 1500)
         }    
-    },[])
+    },[response])
+
     return (
         <div className="loader">
         <div className="lds-grid">
