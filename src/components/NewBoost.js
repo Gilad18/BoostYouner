@@ -16,16 +16,18 @@ export default function NewBoost() {
     const [newTag, setNewTag] = useState('');
     const [newImage, setNewImg] = useState('')
     const [newDate, setNewDate] = useState('');
-    const [newHour, setNewHour] = useState('')
+    const [newHour , setNewHour] =useState('')
     const [emptyForm, setEmtpy] = useState(true)
     const [loading, setLoading] = useState(false)
     const [match, setMatch] = useState([])
     const [chosen, setChosen] = useState([])
     const [confirmDis, setConfirm] = useState(false)
     const [previewDIs, setPreview] = useState(false)
+    const [error, setError] = useState(false)
 
     const handleLocation = (e) => {
         setlocation(e.target.value)
+        setError(false)
     }
 
     const handleLabel = (e) => {
@@ -50,7 +52,7 @@ export default function NewBoost() {
             setMatch(results);
             setEmtpy(false);
         }
-        else { console.log('error didnt find') }    //set error messeage
+        else { setError(true) }    //set error messeage
         setLoading(false)
     }
 
@@ -86,8 +88,8 @@ export default function NewBoost() {
                         <Input type="radio" group="format" name="Feed" value="feed" onChange={(e) => setFortmat(e.target.value)} />
                     </div>
                     <div className="flexDiv">
-                        <Select name="Location" values={Utilities[1].location} onClick={handleLocation} />
-                        <Select name="Labels" values={Utilities[0].labels} onClick={handleLabel} />
+                        <Select name="Location:" values={Utilities[1].location} onClick={handleLocation} />
+                        <Select name="Labels:" values={Utilities[0].labels} onClick={handleLabel} />
                     </div>
                     <div className="secondFlexDiv">
                         <Input type="text" name="Caption:" onChange={(e) => setNewText(e.target.value)} />
@@ -98,7 +100,7 @@ export default function NewBoost() {
                         <Input type="date" name="Post Date:" onChange={(e) => setNewDate(e.target.value)} />
                         <Input type="time" name="Post Time:" onChange={(e) => setNewHour(e.target.value)} />
                     </div>
-                    <input type="button" value="Get Boosters" onClick={checkformatch} />
+                    <input className="matchButton" type="button" value="Get Boosters" onClick={checkformatch} />
                 </form>}
             {loading && <Loader text="Getting Some Awesome Data, Please Wait..." response={false} />}
             {!emptyForm && <div className="results" >
@@ -118,7 +120,7 @@ export default function NewBoost() {
                     amount={chosen.followers} closePop={closePop} boostID={Math.floor(Math.random() * 4000 + 1)}
                     image={newImage} text={newText} />
             }
-
+             {error && <h3 style={{color:'red',textAlign:'center'}}>Oh no! We couldn’t find a suitable match for these targets, please try again...</h3>}
         </div>
     )
 }

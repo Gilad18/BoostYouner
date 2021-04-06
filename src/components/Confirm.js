@@ -1,10 +1,11 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Button from './Button'
 import { useHistory } from 'react-router-dom'
 
-export default function Confirm({ format, date, id, amount, closePop, boostID, image, text }) {
+export default function Confirm({ format, date, id, amount, closePop, boostID, image }) {
 
     const myBoostid = boostID;
+    const [error , setError] = useState(false)
 
     let pay = Number.parseFloat((amount * 0.02)).toFixed(2)
     let fee = Number.parseFloat((pay * 0.1).toFixed(2))
@@ -15,6 +16,7 @@ export default function Confirm({ format, date, id, amount, closePop, boostID, i
     const history = useHistory();
 
     const handleApprove = () => {
+        setError(false)
         let currectBalnce = parseInt(localStorage.getItem('balance'))
         if (currectBalnce >= total) {
             currectBalnce -= total
@@ -22,7 +24,7 @@ export default function Confirm({ format, date, id, amount, closePop, boostID, i
             console.log(`approved! currentBlance: ${currectBalnce}`)
             createTrasactionObj();
             setTimeout(() => history.push("/account/welcome"), 1500)
-        } else { console.log(`Denied! No sufficent funds`) }  //set error
+        } else { setError(true)}  //set error
 
     }
     const createTrasactionObj = () => {
@@ -68,6 +70,7 @@ export default function Confirm({ format, date, id, amount, closePop, boostID, i
             </div>
             <h3>Total : {total} ILS</h3>
             <Button name="Approve" onClick={handleApprove} />
+            {error && <p style={{color:'red' }}>No sufficient funds , please make a despoit</p>}
         </div>
     )
 }

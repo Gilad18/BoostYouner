@@ -9,10 +9,11 @@ export default function Dashboard() {
     const [openDesposit , setOpenDeposit] = useState(false)
     const [amount , setAmount] = useState('')
     const [loading , setLoading] = useState(false)
+    const [error , setError] = useState(false)
 
     const handleDeposit = () => {
-        console.log(amount)
         setOpenDeposit(true)
+        setError(false)
     }
 
     const handlepayNow = () => {
@@ -24,11 +25,19 @@ export default function Dashboard() {
             localStorage.setItem('balance' , currectBalnce)
             setTimeout(doneDeposit , 2500)
         }
-      else {console.log('error min deposit')}
+      else { setError(true)}
+     
     }
     const doneDeposit = () => {
         setOpenDeposit(false)
         setLoading(false)
+    }
+
+    const handleAmount = (e) => {
+        setAmount(parseInt(e.target.value))
+        if (e.target.value>=50) {
+            setError(false)
+        }
     }
     return (
         
@@ -52,15 +61,16 @@ export default function Dashboard() {
            </div>
            {openDesposit &&
             <div className="despositPop">
-                <Button name="Discard" onClick={()=> setOpenDeposit(false)}/>
+                <Button name="-" onClick={()=> setOpenDeposit(false)}/>
                Add Funds Here:
                <Input name="Invoice For:" type="text" value={localStorage.getItem('company')}/>
-               <Input name="Amount:" type="number" onChange={(e) => setAmount(parseInt(e.target.value))}/>
+               <Input name="Amount:" type="number" onChange={handleAmount}/>
               <div className="payMethod">
                <Input name="PayPal" type="radio" group="method"/>
                <Input name="Google Pay" type="radio" group="method"/>
                <Input name="Visa" type="radio" group="method"/>
                </div>
+               {error && <p style={{lineHeight:'5px' , color:'red'}}>Minimum 50ILS</p>}
                <Button name="Pay Now" onClick={handlepayNow}/>
                {loading && <Loader text="Getting Authorization..." response={true}/>}
                </div>

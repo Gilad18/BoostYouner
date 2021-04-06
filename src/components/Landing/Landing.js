@@ -1,10 +1,10 @@
 import React,{useEffect, useState} from 'react'
-import Button from './Button'
+import Button from '../Button'
 import { useHistory} from 'react-router-dom'
-import Input from './Input'
-import Loader from './Loader/Loader'
-import About from './Landing/About'
-import './landing.css'
+import Input from '../Input'
+// import Loader from '../Loader/Loader'
+import About from './About'
+// import '../Landing/landing.css'
 
 export default function Landing() {
    const [name, setName] = useState('')
@@ -51,7 +51,7 @@ export default function Landing() {
                <Input name="Company Name:" type="text" onChange={(e) => setCompany(e.target.value)}/>
                <Input name="Instagram Account:" type="text" onChange={(e) => setIGaccount(e.target.value)}/>
                <Input name="Email Adress:" type="email" onChange={(e) => setEmail(e.target.value)}/>
-               {loading && <Loader text="Creating Account.." response={true}/>}
+               {/* {loading && <Loader text="Creating Account.." response={true}/>} */}
             </form>  
             <Button name="Create Account" onClick={handleSubmitClick}/>
             </aside>

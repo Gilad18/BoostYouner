@@ -1,61 +1,77 @@
-import React,{useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import TR from './CampiagnTR'
 import '../CSS/account.css'
 
 
 export default function UI() {
 
-   const [ campaigns , setCampaigns] = useState([])
+  const date = new Date()
+  const [campaigns, setCampaigns] = useState([])
 
-   useEffect(()=> {
-     const update = () => {
+
+  useEffect(() => {
+    const update = () => {
       setCampaigns(JSON.parse(localStorage.getItem('campaigns')));
-     }
-      update();
-   },[])
-    
-   const partDay = () => {
-    let currentDate = new Date().getHours()
+    }
+     update();
+  },[])
+
+  const partDay = () => {
+    let currentDate = date.getHours()
     let text;
-    switch(true) {
-      case currentDate>6 && currentDate<12:
-        text ="Morning"
+    switch (true) {
+      case currentDate >= 6 && currentDate < 12:
+        text = "Morning"
         break;
-        case currentDate>12 && currentDate<18 :
-          text ="Afternoon"
-          break;  
-          case currentDate>18 && currentDate<23:
-            text ="Evening"
-            break;  
-            default :
-            text="Night"
+      case currentDate >= 12 && currentDate < 18:
+        text = "Afternoon"
+        break;
+      case currentDate >= 18 && currentDate < 23:
+        text = "Evening"
+        break;
+      default:
+        text = "Night"
     }
     return text
-   }
-   const getNum = () => {
-     if(localStorage.getItem('campaigns') !== null) {
-       return campaigns.length
-     } else {return 0}
-   }
+  }
 
-   const getReached = () => {
-     if(localStorage.getItem('campaigns') !== null) {
-      let followersTotal =  campaigns.reduce((a,b) => {
-        return a  + b.followers; },0)
+  const getStatus = (certain) => {
+    let requested = new Date(certain)
+    return (requested.getTime() < date.getTime()) ? 'Completed' : 'Due'
+  }
 
-      return Math.floor(followersTotal*0.45)
-     }
-    else {return 0}
-   }
+  const getNum = () => {
+    if (localStorage.getItem('campaigns') !== null) {
+      return campaigns.filter(item => { return item.status === 'Due' }).length
+    } else {
+      return 0
+    }
+  }
 
-   const getAVGspent = ()  => {
-     if(localStorage.getItem('campaigns') !== null) {
-      let totalSpent = campaigns.reduce((a,b) => {return a  + b.spent },0)
+  const getReached = () => {
+    if (localStorage.getItem('campaigns') !== null) {
+      let followersTotal = campaigns.reduce((a, b) => {
+        return a + b.followers;
+      }, 0)
+
+      return Math.floor(followersTotal * 0.45)
+    }
+    else { return 0 }
+  }
+
+  const getAVGspent = () => {
+    if (localStorage.getItem('campaigns') !== null) {
+      let totalSpent = campaigns.reduce((a, b) => { return a + b.spent }, 0)
       let reached = getReached()
-       return Number.parseFloat(totalSpent / reached).toFixed(3)
-     }
-     else {return Number.parseFloat(0).toFixed(2)}
-   }
+      return Number.parseFloat(totalSpent / reached).toFixed(3)
+    }
+    else { return Number.parseFloat(0).toFixed(2) }
+  }
+
+  const handleSort = () => {
+    let theCampigns = campaigns
+    theCampigns.sort( function (a,b) { return b.spent - a.spent} )
+  }
 
   return (
 
@@ -64,39 +80,39 @@ export default function UI() {
       <div className="firstPage">
         <div className="cell stat1">
           <h4>Live Campigns:</h4>
-          <h1>{getNum()}</h1>
+          <h1><span>{getNum()}</span></h1>
         </div>
         <div className="cell stat2">
           <h4>Estimated Reach:</h4>
-          <h2>{getReached() }</h2>
+          <h2>{getReached().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h2>
         </div>
         <div className="cell stat3">
           <h4>CPI</h4>
           <h2>{getAVGspent()}</h2>
         </div>
         <fieldset className="cell history">
-          
-          <legend style={{fontWeight:'bold'}}>My History Campaigns</legend>
+          <legend style={{ fontWeight: 'bold'}}>My History Campaigns</legend>
           <table>
-          <thead>
-            <tr className="mainTR">
-              <th>Campaign ID</th>
-              <th>Date</th>
-              <th>PartnerID</th>
-              <th>Format</th>
-              <th>Image</th>
-              <th>Spent</th>
-              <th>Status</th>
-            </tr>
+            <thead>
+              <tr className="mainTR">
+                <th>Campaign ID</th>
+                <th>Date</th>
+                <th>PartnerID</th>
+                <th>Format</th>
+                <th>Preview</th>
+                <th style={{display:'flex' , justifyContent:'space-evenly'}}>Spent <i onClick={handleSort}> F </i></th>
+                <th>Status</th>
+              </tr>
             </thead>
             <tbody>
-            {campaigns && campaigns.map((item ,index) => {
+              {campaigns && campaigns.map((item, index) => {
                 return <TR key={index} campaignID={item.campaignID} date={item.theDate}
-                partnerID={item.partnerID} format={item.format} spent={item.spent}
-                status={item.status} img={item.image} />
-            })}
-           </tbody>
+                  partnerID={item.partnerID} format={item.format} spent={item.spent}
+                  status={getStatus(item.theDate)} img={item.image} />
+              })}
+            </tbody>
           </table>
+          {!campaigns &&  <h3 style={{textAlign:'center'}}>You D'ont Have any Live Campigns Yet, what are you waiting for?</h3>}
         </fieldset>
       </div>
     </div>
