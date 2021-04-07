@@ -8,6 +8,7 @@ import Loader from '../Loader/Loader'
 import Select from '../Inputs/Select'
 import Utilities from './Utilities'
 
+
 export default function NewBoost() {
     const [format, setFortmat] = useState('')
     const [location, setlocation] = useState('')
@@ -112,8 +113,10 @@ export default function NewBoost() {
             </div>
             }
             {
-                previewDIs && <Preview name={chosen.name} pic={chosen.avatar} image={newImage}
+                previewDIs && 
+                <Preview name={chosen.name} pic={chosen.avatar} image={newImage}
                     text={newText} tag={newTag} format={format} closePop={closePop} />
+            
             }
             {
                 confirmDis && <Confirm format={format} date={newDate} id={chosen.id}

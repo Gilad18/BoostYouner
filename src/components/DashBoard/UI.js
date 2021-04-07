@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import TR from './CampiagnTR'
 import './account.css'
 
@@ -6,16 +6,18 @@ import './account.css'
 export default function UI() {
 
   const date = new Date()
-  const [campaigns, setCampaigns] = useState([])
+
+  const campaigns = JSON.parse(localStorage.getItem('campaigns'))
+
   const [moreStas, setMoreStat] = useState(false)
   const [moreStatsText, setMoreStatsText] = useState('Show More Stats')
 
-  useEffect(() => {
-    const update = () => {
-      setCampaigns(JSON.parse(localStorage.getItem('campaigns')));
-    }
-    update();
-  }, [])
+  // useEffect(() => {
+  //   const update = () => {
+  //     setCampaigns(JSON.parse(localStorage.getItem('campaigns')));
+  //   }
+  //   update();
+  // }, [])
 
   const partDay = () => {
     let currentDate = date.getHours()
@@ -42,7 +44,7 @@ export default function UI() {
   }
 
   const getNum = () => {
-    if (localStorage.getItem('campaigns') !== null) {
+    if (campaigns !== null) {
       return campaigns.filter(item => { return item.status === 'Due' }).length
     } else {
       return 0
@@ -50,7 +52,7 @@ export default function UI() {
   }
 
   const getReached = () => {
-    if (localStorage.getItem('campaigns') !== null) {
+    if (campaigns !== null) {
       let followersTotal = campaigns.reduce((a, b) => {
         return a + b.followers;
       }, 0)
@@ -60,7 +62,7 @@ export default function UI() {
   }
 
   const getAVGspent = () => {
-    if (localStorage.getItem('campaigns') !== null) {
+    if (campaigns !== null) {
       let totalSpent = campaigns.reduce((a, b) => { return a + b.spent }, 0)
       let reached = getReached()
       return Number.parseFloat(totalSpent / reached).toFixed(3)
@@ -73,43 +75,38 @@ export default function UI() {
   }
 
   const getTotalSpent = () => {
-    if (localStorage.getItem('campaigns') !== null) {
+    if (campaigns !== null) {
       let totalSpent = campaigns.reduce((a, b) => { return a + b.spent }, 0)
       return Number.parseFloat(totalSpent).toFixed(2)
     }
     else { return Number.parseFloat(0).toFixed(2) }
   }
 
-  const spentByFormat = () => {
-    if (localStorage.getItem('campaigns') !== null) {
+  const spentByFormatStory = () => {
+    if (campaigns !== null) {
       let total = getTotalSpent();
       let story = campaigns.filter(item => { return item.format === 'story' }).reduce((a, b) => { return a + b.spent }, 0)
-      let feed = campaigns.filter(item => { return item.format === 'feed' }).reduce((a, b) => { return a + b.spent }, 0)
-      return `Story:${Number.parseFloat(story / total * 100).toFixed(2)}%  ||  Feed:${Number.parseFloat(feed / total * 100).toFixed(2)}%`
-    } else { return 'Not Avaiable Yet' }
+      return Number.parseFloat(story / total * 100).toFixed(2)
+    } else { return 0 }
   }
 
-  const getTopPartner = () => {
-    if (localStorage.getItem('campaigns') !== null) {
-      let been = []
-      for (let i = 0; i < campaigns.length; i++) {
-        let searched = been.filter(item => { return item.id === campaigns[i].partnerID })
-        if (searched.length > 0) {
-          let thevaluesof = [...searched]
-          let theValue = parseInt(thevaluesof[0].spent)
-          let thesearced = been.indexOf(...searched)
-          been[thesearced] = { id: campaigns[i].partnerID, spent: theValue + campaigns[i].spent }
-        } else {
-          let record = { id: campaigns[i].partnerID, spent: campaigns[i].spent }
-          been.push(record)
-        }
-      }
-      let theMax = been.reduce((a, b) => { return a > b.spent ? a : b.spent }, 0)
-      let theMAxObj = been.filter(item => { return item.spent === theMax })
-      return ` Parnter #${theMAxObj.id}, (${theMAxObj.spent} ILS) `
+  const spentByFormatFeed = () => {
+    if (campaigns !== null) {
+      let total = getTotalSpent();
+      let feed = campaigns.filter(item => { return item.format === 'feed' }).reduce((a, b) => { return a + b.spent }, 0)
+      return Number.parseFloat(feed / total * 100).toFixed(2)
+    } else { return 0 }
+  }
+
+  const spentToday = () => {
+    if (campaigns !== null) {
+      let today = date.toISOString().slice(0,10)
+     let campaignToday = campaigns.filter(item => { return item.theDate === today}).reduce((a,b)=>{return a +b.spent} ,0)
+    return campaignToday
     }
      else { return 'Not Avaiable Yet' }
-  }
+
+}
 
 
   return (
@@ -132,19 +129,25 @@ export default function UI() {
           <h2>{getAVGspent()}</h2>
         </div>
         <div className={`cell history moreStats ${moreStas ? "moreStasOpen " : " "}`}>
-          <p style={{ float: 'right' }} onClick={handleMoreStats}>{moreStatsText}</p><br></br>
+          <p className="expandStats" onClick={handleMoreStats}>{moreStatsText} <i className="fas fa-expand-alt"></i></p><br></br>
           <div className="moreStasDivs">
             <div className="moreStastDivBox">
-              <h3>Spent By Formt:</h3>
-              <h3 style={{ textAlign: 'center' }}>{spentByFormat()}</h3>
+              <h3>Spent By Format:</h3>
+              <div className="formatsNames">
+                <p>Story</p><p style={{float:'right'}}>Feed</p>
+              </div>
+              <div className="barDiv">
+                <div className="barDivStory" style={{width:`${spentByFormatStory()}%`}}>{spentByFormatStory()}%</div>
+                <div className="barDivfeed" style={{width:`${spentByFormatFeed()}%`}}>{spentByFormatFeed()}%</div>
+              </div>
             </div>
             <div className="moreStastDivBox">
               <h3>Total Spent:</h3>
-              <h1><span>{getTotalSpent()} ILS</span></h1>
+              <h1><span>{getTotalSpent()} </span>ILS</h1>
             </div>
             <div className="moreStastDivBox">
-              <h3>Top Partner:</h3>
-              <h3>{getTopPartner()}</h3>
+              <h3>Spent Today:</h3>
+              <h1><span>{spentToday()} </span>ILS</h1>
             </div>
           </div>
         </div>

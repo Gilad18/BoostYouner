@@ -38,7 +38,7 @@ export default function Landing() {
     return (
         <div className="landingPage">
             <aside>
-            <h4  className="aboutUsLink" onClick={handleAbout}>About Us</h4>
+            <h4  className="aboutUsLink" onClick={handleAbout}>About US</h4>
             <div className="logoLanding"></div>
             <h2  style={{color:'white'}}>Find The Boost You Need</h2>
             <form className="landingform"> 
