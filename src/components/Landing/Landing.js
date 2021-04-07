@@ -16,11 +16,11 @@ export default function Landing() {
 
     const history = useHistory();
 
-    useEffect(() => {
-       if(localStorage.length>0) {
-        history.push("/account/welcome")
-       }
-    })
+    // useEffect(() => {
+    //    if(localStorage.length>0) {
+    //     history.push("/account/welcome")
+    //    }
+    // })
 
     const handleSubmitClick = () => {
         setLoading(true)
@@ -53,9 +53,9 @@ export default function Landing() {
             </aside>
             <section>
                 <div className="TextsSHowCase">
-                  <h1 className="shText1">New Audience?</h1>
-                  <h1 className="shText2" style={{color:'white'}}>Explore Our Partners</h1>
-                  <h1 className="shText3">Pick The One</h1>
+                  <h1 className="shText1">Fresh Audience</h1>
+                  <h1 className="shText2" style={{color:'white'}}>Rockstar Partners</h1>
+                  <h1 className="shText3">Choose Yours</h1>
                   <h1 className="shText4">Boost Your Business</h1>
                   </div>
                   {about && <About text="X" onClick={handleAbout}/>}

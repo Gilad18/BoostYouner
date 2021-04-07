@@ -6,18 +6,9 @@ import './account.css'
 export default function UI() {
 
   const date = new Date()
-
   const campaigns = JSON.parse(localStorage.getItem('campaigns'))
-
   const [moreStas, setMoreStat] = useState(false)
   const [moreStatsText, setMoreStatsText] = useState('Show More Stats')
-
-  // useEffect(() => {
-  //   const update = () => {
-  //     setCampaigns(JSON.parse(localStorage.getItem('campaigns')));
-  //   }
-  //   update();
-  // }, [])
 
   const partDay = () => {
     let currentDate = date.getHours()
@@ -128,7 +119,7 @@ export default function UI() {
           <h3>CPI</h3>
           <h2>{getAVGspent()}</h2>
         </div>
-        <div className={`cell history moreStats ${moreStas ? "moreStasOpen " : " "}`}>
+        {campaigns && <div className={`cell history moreStats ${moreStas ? "moreStasOpen " : " "}`}>
           <p className="expandStats" onClick={handleMoreStats}>{moreStatsText} <i className="fas fa-expand-alt"></i></p><br></br>
           <div className="moreStasDivs">
             <div className="moreStastDivBox">
@@ -150,7 +141,7 @@ export default function UI() {
               <h1><span>{spentToday()} </span>ILS</h1>
             </div>
           </div>
-        </div>
+        </div>}
         <fieldset className="cell history">
           <legend style={{ fontWeight: 'bold' }}>My History Campaigns</legend>
           <table>

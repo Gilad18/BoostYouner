@@ -16,8 +16,6 @@
    justify-content: space-around;
    
   }
-
-
  
 
   .logoLanding{
@@ -82,31 +80,58 @@
   }
 
   .shText1 {
+   animation: text1 ease-in 9s;
+   animation-delay: 4s;
    visibility: hidden;
-   animation: text1 ease-in 35s;
-  }
+   position: absolute;
+   top: 25%;
+   left: 40%;
+   font-size: xx-large;
+   transition: ease-in-out 1s;
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif  }
   .shText2 {
+    animation: text1 ease-in 9s;
+    animation-delay: 13s;
     visibility: hidden;
-    animation: text2 ease-in 35s;
-}
+    position: absolute;
+    top: 15%;
+    left: 40%;
+    font-size: xx-large;
+    transition: ease-in-out 1s;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif}
 .shText3 {
-    visibility: hidden; 
-    animation: text3 ease-in 35s;
-}
+    animation: text1 ease-in 9s;
+    animation-delay: 22s;
+    visibility: hidden;
+    position: absolute;
+    top: 15%;
+    right: 25%;
+    font-size: xx-large;
+    transition: ease-in-out 1s;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif}
 .shText4 {
-    visibility: hidden; 
-    animation: text4 ease-in 35s;
+    animation: text1 ease-in 5s;
+    animation-delay: 32s;
+    visibility: hidden;
+    position: absolute;
+    top: 20%;
+    right: 25%;
+    font-size: xx-large;
+    transition: ease-in-out 1s;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
-/* 
+
 @keyframes text1 {
     0% {visibility: hidden;}
-    10% {visibility: visible}
-    20% {visibility: hidden}
+    1% {visibility: visible;}
+    99% {visibility: visible}
     100% {visibility: hidden}
 }
-@keyframes text2 {
+/* @keyframes text2 {
     0% {visibility: hidden;}
+    29% {visibility: visible;}
     30% {visibility: visible}
+    41% {visibility: visible}
     40% {visibility: hidden}
     100% {visibility: hidden}
 }
