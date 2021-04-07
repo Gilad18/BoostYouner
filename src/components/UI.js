@@ -7,13 +7,15 @@ export default function UI() {
 
   const date = new Date()
   const [campaigns, setCampaigns] = useState([])
+  const [moreStas, setMoreStat] = useState(false)
+  const [moreStatsText, setMoreStatsText] = useState('Show More Stats')
 
   useEffect(() => {
     const update = () => {
       setCampaigns(JSON.parse(localStorage.getItem('campaigns')));
     }
-     update();
-  },[])
+    update();
+  }, [])
 
   const partDay = () => {
     let currentDate = date.getHours()
@@ -65,11 +67,50 @@ export default function UI() {
     }
     else { return Number.parseFloat(0).toFixed(2) }
   }
+  const handleMoreStats = () => {
+    setMoreStat(!moreStas)
+    moreStas ? setMoreStatsText('Show More Stats') : setMoreStatsText('Show Less Stats')
+  }
 
-  // const handleSort = () => {
-  //   let theCampigns = campaigns
-  //   theCampigns.sort( function (a,b) { return b.spent - a.spent} )
-  // }
+  const getTotalSpent = () => {
+    if (localStorage.getItem('campaigns') !== null) {
+      let totalSpent = campaigns.reduce((a, b) => { return a + b.spent }, 0)
+      return Number.parseFloat(totalSpent).toFixed(2)
+    }
+    else { return Number.parseFloat(0).toFixed(2) }
+  }
+
+  const spentByFormat = () => {
+    if (localStorage.getItem('campaigns') !== null) {
+      let total = getTotalSpent();
+      let story = campaigns.filter(item => { return item.format === 'story' }).reduce((a, b) => { return a + b.spent }, 0)
+      let feed = campaigns.filter(item => { return item.format === 'feed' }).reduce((a, b) => { return a + b.spent }, 0)
+      return `Story:${Number.parseFloat(story / total * 100).toFixed(2)}%  ||  Feed:${Number.parseFloat(feed / total * 100).toFixed(2)}%`
+    } else { return 'Not Avaiable Yet' }
+  }
+
+  const getTopPartner = () => {
+    if (localStorage.getItem('campaigns') !== null) {
+      let been = []
+      for (let i = 0; i < campaigns.length; i++) {
+        let searched = been.filter(item => { return item.id === campaigns[i].partnerID })
+        if (searched.length > 0) {
+          let thevaluesof = [...searched]
+          let theValue = parseInt(thevaluesof[0].spent)
+          let thesearced = been.indexOf(...searched)
+          been[thesearced] = { id: campaigns[i].partnerID, spent: theValue + campaigns[i].spent }
+        } else {
+          let record = { id: campaigns[i].partnerID, spent: campaigns[i].spent }
+          been.push(record)
+        }
+      }
+      let theMax = been.reduce((a, b) => { return a > b.spent ? a : b.spent }, 0)
+      let theMAxObj = been.filter(item => { return item.spent === theMax })
+      return ` Parnter #${theMAxObj.id}, (${theMAxObj.spent} ILS) `
+    }
+     else { return 'Not Avaiable Yet' }
+  }
+
 
   return (
 
@@ -81,17 +122,34 @@ export default function UI() {
           <h1><span>{getNum()}</span></h1>
         </div>
         <div className="cell stat2">
-        <i style={{float:'right'}} className="fas fa-info-circle"></i>
+          <i style={{ float: 'right' }} className="fas fa-info-circle"></i>
           <h3>Estimated Reach:</h3>
           <h2>{getReached().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</h2>
         </div>
         <div className="cell stat3">
-        <i style={{float:'right'}} className="fas fa-info-circle"></i>
+          <i style={{ float: 'right' }} className="fas fa-info-circle"></i>
           <h3>CPI</h3>
           <h2>{getAVGspent()}</h2>
         </div>
+        <div className={`cell history moreStats ${moreStas ? "moreStasOpen " : " "}`}>
+          <p style={{ float: 'right' }} onClick={handleMoreStats}>{moreStatsText}</p><br></br>
+          <div className="moreStasDivs">
+            <div className="moreStastDivBox">
+              <h3>Spent By Formt:</h3>
+              <h3 style={{ textAlign: 'center' }}>{spentByFormat()}</h3>
+            </div>
+            <div className="moreStastDivBox">
+              <h3>Total Spent:</h3>
+              <h1><span>{getTotalSpent()} ILS</span></h1>
+            </div>
+            <div className="moreStastDivBox">
+              <h3>Top Partner:</h3>
+              <h3>{getTopPartner()}</h3>
+            </div>
+          </div>
+        </div>
         <fieldset className="cell history">
-          <legend style={{ fontWeight: 'bold'}}>My History Campaigns</legend>
+          <legend style={{ fontWeight: 'bold' }}>My History Campaigns</legend>
           <table>
             <thead>
               <tr className="mainTR">
@@ -112,7 +170,7 @@ export default function UI() {
               })}
             </tbody>
           </table>
-          {!campaigns &&  <h3 style={{textAlign:'center'}}>You d'ont have any live campigns yet, go ahead and create one!</h3>}
+          {!campaigns && <h3 style={{ textAlign: 'center' }}>You d'ont have any live campigns yet, go ahead and create one!</h3>}
         </fieldset>
       </div>
     </div>

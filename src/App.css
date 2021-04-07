@@ -353,6 +353,8 @@ padding: 3px;
 .storyMain {
   height: 350px;
   width: 100%;
+  position: relative;
+  top: 50%;
 }
 .storyFooter {
   height: 50px;

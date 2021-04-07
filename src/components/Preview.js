@@ -28,9 +28,9 @@ export default function Preview({name , pic , image , text, tag , format , close
                     <div className="feedProfilefeed" style={{backgroundImage:`url(${pic})`}}></div>
                     <h6 style={{color:'white' }}>{name.toLowerCase()}</h6></div>
                     <div className="storyMain">
-                        <h3 style={{backgroundColor:'white' }}>{text}</h3>
-                        <p style={{color:'blue'}}> #{tag}</p>
-                        <p style={{color:'purple'}}> @{localStorage.getItem('igAccount')}</p>
+                        <h3 style={{backgroundColor:'white',width:'10rem'}}>{text}</h3>
+                        <p style={{color:'blue' ,width:'10rem', fontWeight: 'bold' }}> #{tag}</p>
+                        <p style={{color:'purple' ,width:'10rem' , fontWeight: 'bold'}}> @{localStorage.getItem('igAccount')}</p>
                         </div>
                     <div className="storyFooter">
                         <div className="messageStory">Message {name.toLowerCase()}...</div>

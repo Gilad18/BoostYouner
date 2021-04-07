@@ -5,7 +5,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr 3fr;
-    grid-gap : 4rem;
+    grid-gap : 2rem;
     ;
 }
 
@@ -52,6 +52,8 @@
     overflow: scroll ;
     overflow-x: hidden;
 }
+
+
 
 .history table {
     background-color: rgb(248, 246, 244);
@@ -106,4 +108,32 @@
     width: 15rem;
     height: 15rem;
     position: absolute;
+}
+
+
+.moreStats {
+   display: block;
+    height: 2rem;
+    border: none !important;
+    background-color: transparent !important;
+    overflow: hidden !important;
+}
+
+.moreStasOpen {
+    height: 20rem;
+}
+
+.moreStasDivs {
+    width: 100%;
+    height: 55%;
+    display: flex;
+}
+
+.moreStastDivBox {
+    background-color: rgb(248, 246, 244);
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 0.5rem;
+    width: 100%;
+    margin: 1rem;
 }
