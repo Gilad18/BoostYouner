@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
-import Button from './Button'
+import Button from '../Inputs/Button'
 import { useHistory } from 'react-router-dom'
-import Loader from './Loader/Loader'
+import Loader from '../Loader/Loader'
 
 export default function Confirm({ format, date, id, amount, closePop, boostID, image }) {
 

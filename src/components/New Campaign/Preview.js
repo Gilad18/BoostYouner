@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from './Button'
+import Button from '../Inputs/Button'
 
 export default function Preview({name , pic , image , text, tag , format , closePop}) {
     return (

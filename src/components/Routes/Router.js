@@ -1,11 +1,11 @@
 import {BrowserRouter, Route} from 'react-router-dom'
-import Account from './UI'
-import Header from './Dashboard'
-import NewBoost from './NewBoost'
-import Landing from './Landing/Landing'
-import Explore from './Explore'
+import Account from '../DashBoard/UI'
+import Header from '../DashBoard/Dashboard'
+import NewBoost from '../New Campaign/NewBoost'
+import Landing from '../Landing/Landing'
+import Explore from '../Explore/Explore'
 import React from 'react'
-import HowTo from './HowTo'
+import HowTo from '../How To/HowTo'
 
 export default function Router() {
     return (

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import TR from './CampiagnTR'
-import '../CSS/account.css'
+import './account.css'
 
 
 export default function UI() {

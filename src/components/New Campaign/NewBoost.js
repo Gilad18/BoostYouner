@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import Input from './Input'
-import API from './api'
+import Input from '../Inputs/Input'
+import API from '../Inputs/api'
 import Card from './BoosterCard'
 import Confirm from './Confirm'
 import Preview from './Preview'
-import Loader from '../components/Loader/Loader'
-import Select from './Select'
+import Loader from '../Loader/Loader'
+import Select from '../Inputs/Select'
 import Utilities from './Utilities'
 
 export default function NewBoost() {

@@ -1,8 +1,8 @@
 import React,{useState} from 'react'
 import { Link  } from 'react-router-dom'
-import Button from './Button'
-import Input from './Input'
-import Loader from '../components/Loader/Loader'
+import Button from '../Inputs/Button'
+import Input from '../Inputs/Input'
+import Loader from '../Loader/Loader'
 
 export default function Dashboard() {
 

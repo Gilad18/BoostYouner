@@ -1,6 +1,6 @@
 import React from 'react'
 // import '../landing.css'
-import Button from '../Button'
+import Button from '../Inputs/Button'
 
 export default function About({ text, onClick }) {
     return (

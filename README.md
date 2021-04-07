@@ -37,17 +37,10 @@ once the transaction was approved, he can see the statistic on his dashboard
  
 I manage to have most of the functionality I wanted for this app to have a full  user experience and if this project
 one day become real all it needed is to simply connect the influences(aka partners) to Instagram API and to automatically
-upload the content for Boostyooner.
+upload the content from Boostyooner app.
  
 I did want to have more data statistic on the dashboard with a combination of chart and graph and to style it 
 in a more modern way
- 
- 
- 
- 
- 
-### Advanced Configuration
- 
  
  
 ## Deployment
