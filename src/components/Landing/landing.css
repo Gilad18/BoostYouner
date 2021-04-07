@@ -88,7 +88,7 @@
    left: 40%;
    font-size: xx-large;
    transition: ease-in-out 1s;
-   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif  }
+  }
   .shText2 {
     animation: text1 ease-in 9s;
     animation-delay: 13s;
@@ -98,7 +98,7 @@
     left: 40%;
     font-size: xx-large;
     transition: ease-in-out 1s;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif}
+  }
 .shText3 {
     animation: text1 ease-in 9s;
     animation-delay: 22s;
@@ -108,7 +108,7 @@
     right: 25%;
     font-size: xx-large;
     transition: ease-in-out 1s;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif}
+}
 .shText4 {
     animation: text1 ease-in 5s;
     animation-delay: 32s;
@@ -118,7 +118,6 @@
     right: 25%;
     font-size: xx-large;
     transition: ease-in-out 1s;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 @keyframes text1 {
