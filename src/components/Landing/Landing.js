@@ -16,11 +16,11 @@ export default function Landing() {
 
     const history = useHistory();
 
-    // useEffect(() => {
-    //    if(localStorage.length>0) {
-    //     history.push("/account/welcome")
-    //    }
-    // })
+    useEffect(() => {
+       if(localStorage.length>0) {
+        history.push("/account/welcome")
+       }
+    })
 
     const handleSubmitClick = () => {
         setLoading(true)
