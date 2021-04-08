@@ -6,15 +6,15 @@ BoostYooner Web Application
  
 Appleseed Bootcamp MidProject with a full front-end deployment.
  
-I had one week to create a full design web app with React js to showcase my development skills. 
+I had one week to create a complete web app with React.js to showcase my development skills. 
 My inspiration for this project was a Media Buying platform (DSP) to let any businesses the
-technology for self-servef influencer marketing.
+technology for self-servef of influencers marketing.
  
 ## Overview
  
 After a user has opened his Bosstyooner account, he/she can create a new ad campaign by filling
 their targeting needs in order to find them a relevant match.
-the user can view pricing, a preview of the ad, partner's details, and an option to complete the acquisition
+The user can view pricing, a preview of the ad, partner's details, and an option to complete the acquisition
 of request for acertian influencer and increase thier business social exposure.
 Once the transaction was approved, the user can view dinamic statistic on the dashboard.
  

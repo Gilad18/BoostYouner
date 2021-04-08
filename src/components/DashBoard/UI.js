@@ -93,7 +93,7 @@ export default function UI() {
     if (campaigns !== null) {
       let today = date.toISOString().slice(0,10)
      let campaignToday = campaigns.filter(item => { return item.theDate === today}).reduce((a,b)=>{return a +b.spent} ,0)
-    return campaignToday
+    return  Number.parseFloat(campaignToday).toFixed(2)
     }
      else { return 'Not Avaiable Yet' }
 
