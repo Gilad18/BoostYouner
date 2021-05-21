@@ -29,13 +29,13 @@ export default function UI() {
     return text
   }
 
-  const getStatus = (certain) => {
+  const getStatus = (certain) => {                           // add also the time
     let requested = new Date(certain)
     return (requested.getTime() < date.getTime()) ? 'Completed' : 'Due'
   }
 
-  const getNum = () => {
-    if (campaigns !== null) {
+  const getNum = () => {               //change all to if(campiagns)
+    if (campaigns) {
       return campaigns.filter(item => { return item.status === 'Due' }).length
     } else {
       return 0
@@ -103,7 +103,7 @@ export default function UI() {
   return (
 
     <div className="main">
-      <h1>Good {partDay()} , {localStorage.getItem('name')}</h1>
+      <h1>Good {partDay()}, {localStorage.getItem('name')}</h1>
       <div className="firstPage">
         <div className="cell stat1">
           <h3>Live Campaigns:</h3>

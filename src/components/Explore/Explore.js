@@ -7,7 +7,7 @@ export default function Explore() {
 
     useEffect(() => {
         const search = async () => {
-        const response = await axios.get('http://newsapi.org/v2/everything?qInTitle=influencer&language=en&apiKey=cf03f99001ac4168a727057571615849');
+        const response = await axios.get('https://newsapi.org/v2/everything?qInTitle=influencer&language=en&apiKey=cf03f99001ac4168a727057571615849');
         setBlogs(response.data.articles)
         }
         search();
